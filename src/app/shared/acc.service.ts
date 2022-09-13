@@ -14,33 +14,33 @@ export class AccService {
 
 accs:AccModel[] = [
   new AccModel('raju', 'rp', 1111, 12, 'saving', [
-    new statmentModel('13/06/2022', 'debit', 1000),
-    new statmentModel('13/06/2022', 'debit', 5000),
-    new statmentModel('13/06/2022', 'credit', -1000),
-    new statmentModel('13/06/2022', 'credit', -1700)
+    new statmentModel('13/06/2022', 'credit', 1000),
+    new statmentModel('13/06/2022', 'credit', 5000),
+    new statmentModel('13/06/2022', 'debit', -1000),
+    new statmentModel('13/06/2022', 'debit', -1700)
   ]),
   new AccModel('teju', 'tp', 2222, 13,'saving',[
-    new statmentModel('13/06/2022', 'debit', 1000),
-    new statmentModel('13/06/2022', 'debit', 5000),
-    new statmentModel('13/06/2022', 'credit', -1000),
-    new statmentModel('13/06/2022', 'credit', -1700),
-    new statmentModel('13/06/2022', 'credit', -1000),
+    new statmentModel('13/06/2022', 'credit', 1000),
+    new statmentModel('13/06/2022', 'credit', 5000),
+    new statmentModel('13/06/2022', 'debit', -1000),
+    new statmentModel('13/06/2022', 'debit', -1700),
+    new statmentModel('13/06/2022', 'debit', -1000),
 
   ]),
   new AccModel('chiku','cp', 3333, 14,'saving', [
-    new statmentModel('13/06/2022', 'debit', 1000),
-    new statmentModel('13/06/2022', 'debit', 5000),
-    new statmentModel('13/06/2022', 'credit', -1000),
-    new statmentModel('13/06/2022', 'credit', -1700),
-    new statmentModel('13/06/2022', 'debit', 1000),
+    new statmentModel('13/06/2022', 'credit', 1000),
+    new statmentModel('13/06/2022', 'credit', 5000),
+    new statmentModel('13/06/2022', 'debit', -1000),
+    new statmentModel('13/06/2022', 'debit', -1700),
+    new statmentModel('13/06/2022', 'credit', 1000),
 
   ]),
   new AccModel('vaishu','vs', 4444, 15,'saving', [
-    new statmentModel('13/06/2022', 'debit', 1000),
-    new statmentModel('13/06/2022', 'debit', 5000),
-    new statmentModel('13/06/2022', 'debit', 1000),
-    new statmentModel('13/06/2022', 'credit', -1000),
-    new statmentModel('13/06/2022', 'credit', -1700)
+    new statmentModel('13/06/2022', 'credit', 1000),
+    new statmentModel('13/06/2022', 'credit', 5000),
+    new statmentModel('13/06/2022', 'credit', 1000),
+    new statmentModel('13/06/2022', 'debit', -1000),
+    new statmentModel('13/06/2022', 'debit', -1700)
   ])
 
 ]
@@ -80,22 +80,21 @@ addInTotalDebit() {
   this.addTotalDebit.next(this.totalDebit);
 };
 
+getDate(){
+  let today = new Date();
+  let dd = today.getDate();
+  let mm = today.getMonth() + 1;
+  let yy = today.getFullYear();
+  let transationDate = `${dd}/${mm}/${yy}`
+  return transationDate
+}
 
 
 
 addAmount(id:string,num:number,amount:number){
    this.accs.find((acc)=> {
       if(acc.userId === id){
-        let today = new Date();
-        let dd = today.getDate();
-        let mm = today.getMonth() + 1;
-        let yy = today.getFullYear();
-        let transationDate = `${dd}/${mm}/${yy}`
-        acc.statments.push(new statmentModel(transationDate, 'debit', amount));
-        this.totalBalance +=amount;
-        console.log(this.totalBalance)
-        this.addInTotalBalance();
-        this.addInTotalDebit();
+        acc.statments.push(new statmentModel(this.getDate(), 'credit', amount));
       }
      })
 }
@@ -103,9 +102,25 @@ addAmount(id:string,num:number,amount:number){
 removeAmount(id:string,num:number,amount:number){
   this.accs.find((acc)=> {
      if(acc.userId === id){
-       acc.statments.push(new statmentModel(Date(), 'credit', amount));
+       acc.statments.push(new statmentModel(this.getDate(), 'debite', amount));
+       console.log(this.accs)
      }
     })
+}
+
+calTotalBalance(id:string){
+  let tB =0;
+  this.accs.find((acc)=> {
+    if(acc.userId === id){
+      tB = acc.statments.map(m => m.amount).reduce((total,amount) => total+amount);
+    }
+   })
+return tB;
+}
+
+update(){
+
+
 }
 
 

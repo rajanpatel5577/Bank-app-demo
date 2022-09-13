@@ -28,6 +28,7 @@ login(id:string,pwd:number){
 if(!this.accService.loginVerify(id,pwd)) alert('Invalid user id/pwd')
 this.loggedIn=true;
 this.route.navigate(['/acc-dash-board'])
+console.log(this.accService.accs)
 
 
 // this.totalBalance = this.activeAcc.statments.map(m => m.amount).reduce((total,amount) => total+amount);
