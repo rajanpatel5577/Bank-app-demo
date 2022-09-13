@@ -8,6 +8,10 @@ import { AuthGaurdService } from './shared/auth-gaurd.service';
 
 const routes: Routes = [
   {
+    path: '',
+    redirectTo: '/login-page', pathMatch: 'full'
+  },
+  {
     path:'acc-dash-board',
     canActivate: [AuthGaurdService],
     component:AccDashBoardComponent
