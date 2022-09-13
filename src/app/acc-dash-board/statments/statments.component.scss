@@ -1,0 +1,32 @@
+.statment-wraper{
+    // background: linear-gradient(to top left, #28b487, #7dd56f);
+    // background-color: #2e87c9;
+    height: 60vh;
+    // margin: 0rem 0rem;
+    // @media only screen and (min-device-width: 320px) and (max-device-width: 990px) {
+    @media only screen and (max-device-width: 990px) {
+    margin: 0rem 1rem;   
+    }
+
+    &__statment{
+    &__entry{
+        border-radius: 5px;
+        text-align: center;
+        font-size: 20px;
+        margin: .5rem 1rem;
+        // padding: .5rem;
+        // background-color: #dddddd;
+    }
+}
+    .credit{
+        // border: 2px solid red;
+        // color: red;
+    background-color: #eb503e;
+
+    }
+    .debit{
+        // border: 2px solid green;
+        color: #000;
+    background-color: #40ff00;
+    }
+}

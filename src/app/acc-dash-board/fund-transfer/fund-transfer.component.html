@@ -1,0 +1,17 @@
+<div class="card text-white bg-warning mb-3">
+    <div class="card-header">Fund Transfer</div>
+    <div class="card-body">
+    <form [formGroup]="fundTransferForm" (ngSubmit)="onSubmit()">
+        <label for="uName" class="form-label" class="form-label">User Name</label>
+        <input class="form-control" type="text" formControlName="uName">
+
+        <label for="accNum" class="form-label">Acc Number</label>
+        <input class="form-control" type="number" formControlName="accNum">
+    
+        <label for="amount" class="form-label">Amount</label>
+        <input class="form-control" type="number" formControlName="amount">
+
+        <button type="submit" class="btn btn-primary mt-3">Transfer Now</button>
+    </form>
+    </div>
+</div>

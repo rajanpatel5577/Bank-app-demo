@@ -1,0 +1,14 @@
+.login-form-wraper{
+    height: 100vh;
+    background-color: aliceblue;
+    &__form-heading{
+        // background-color: #3effbe;
+        // color: #3effbe;
+        font-weight: bold;
+    }
+    form{
+        input{
+            background-color: aliceblue;
+        }
+    }
+}
