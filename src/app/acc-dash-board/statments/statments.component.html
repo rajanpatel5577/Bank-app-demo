@@ -1,35 +1,21 @@
-<!-- <div class="statment-wraper">
-<div class="statment-wraper__header">Mini Statment</div>
 
-<div *ngFor="let acc of activeAcc.statments"
-     class="statment-wraper__statment-entry" 
-     [ngClass]="acc.amount<0 ? 'credit':'withdrawal'">
-     {{acc.date}} {{acc.movementType}} : {{acc.amount}}
-</div>
-
-<div class="d-flex">
-<div class="col-3">Account Summary</div>
-<div class="col-3">Total Withdrawal : {{totalWithdrwal}} </div>
-<div class="col-3">Total Credit : {{totalCredit}}</div>
-<div class="col-3">Total Credit : {{totalWithdrwal + totalCredit}}</div>
-</div>
-</div> -->
-
-<div class="card text-white statment-wraper mb-3" style="background: linear-gradient(to top left, #28b487, #7dd56f);">
+<div class="card text-white statment-wraper mb-3" style="background:#2e87c9"> 
+     <!-- style="background: linear-gradient(to top left, #28b487, #7dd56f);" -->
      <div class="card-header">Transactions</div>
-     <div class="card-body statment-wraper__statment" style="background:linear-gradient(to top left,#ffffff, #7dd56f);">
+     <div class="card-body statment-wraper__statment">
+          <!-- style="background:linear-gradient(to top left,#ffffff, #7dd56f);" -->
           <div *ngFor="let acc of activeAcc.statments"
           class="statment-wraper__statment__entry" 
-          [ngClass]="acc.amount<0 ? 'credit':'debit'">
+          [ngClass]="acc.movementType === 'credit' ? 'credit':'debit'">
           {{acc.date}} {{acc.movementType}} : {{acc.amount}}
      </div>
      </div>
      <div class="d-flex justify-content-evenly">
           <div class="col-3">Total Debit : {{totalDebit}} </div>
           <div class="col-3">Total Credit : {{totalCredit}}</div>
-          <div class="col-3">Total Balance : {{totalDebit + totalCredit}}</div>
+          <div class="col-3">Total Balance : {{totalBalance}}</div>
      </div>
  </div>
 
 
-<button (click)="onClick()">click</button>
+<!-- <button (click)="onClick()">click</button> -->

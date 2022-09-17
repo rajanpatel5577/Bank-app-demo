@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AccModel } from 'src/app/shared/acc-model';
 import { AccService } from 'src/app/shared/acc.service';
+import { CalculationService } from 'src/app/shared/calculation.service';
 
 
 @Component({
@@ -12,14 +13,14 @@ export class IntroComponent implements OnInit {
 activeAcc:AccModel=<AccModel>{};
 totalBalance:number=0;
 
-  constructor(private accService:AccService) { }
+  constructor(private accService:AccService, private calcService:CalculationService) { }
 
   ngOnInit(){
-    this.activeAcc = this.accService.activeAcc;
-    this.totalBalance = this.accService.totalBalance;
+    this.accService.exportActiveAcc.subscribe((data) =>{
+      this.activeAcc =data;
+      this.totalBalance = this.calcService.calcTotalBalance(this.activeAcc);
+    })
 
-//   this.loginService.eportActiveAcc.subscribe((actACC:AccModel)=>{this.activeAcc = actACC})
-this.accService.addTotalBalance.subscribe((b:number) =>{this.totalBalance = b});
   }
 
 }

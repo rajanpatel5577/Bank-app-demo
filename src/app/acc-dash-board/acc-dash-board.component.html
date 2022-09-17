@@ -1,6 +1,14 @@
+<div *ngIf="fathing" class="d-flex justify-content-center mt-5">
+  
+    <div class="lds-spinner">
+        <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div>    
+        </div><div></div><div></div><div></div><div></div></div>
+
+</div>
+
+<div *ngIf="!fathing">
 <app-header></app-header>    
 <app-intro></app-intro>
-
 <div class="row">
     <div class="col-12 col-lg-3">
         <app-acc-summary></app-acc-summary>
@@ -11,4 +19,7 @@
     <div class="col-12 col-lg-4">
         <app-side-menubar></app-side-menubar>
     </div>
-</div> -->
+</div> 
+
+<!-- <button (click)="onClick()">click</button> -->
+</div>

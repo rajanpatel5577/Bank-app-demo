@@ -1,0 +1,49 @@
+<div class="d-flex  align-items-center flex-column">
+<div class="col-6 mt-5">
+<form [formGroup]="addNewAcc" (ngSubmit)="onNext()">
+    <label for="userName" class="form-label">User Name</label>
+    <input class="form-control" type="text" formControlName="userName">
+
+    <label for="userID" class="form-label">User ID</label>
+    <input class="form-control" type="text" formControlName="userID">
+
+    <label for="password" class="form-label">Password</label>
+    <input class="form-control" type="password" formControlName="password">
+
+    <label for="accNum" class="form-label">Account Number</label>
+    <input class="form-control" type="number" formControlName="accNum">
+
+    <label for="accType" class="form-label">Account Type</label>
+    <input class="form-control" type="text" formControlName="accType">
+
+    <button *ngIf="!filledForm" type="submit" class="btn btn-primary mt-3">Next</button>
+</form>
+</div>
+<div *ngIf="filledForm" class="col-6">
+    <p class="mt-3">Add Tranjections</p>
+    <form [formGroup]="addTranjection" (ngSubmit)="onAddTranjection()" class="d-flex justify-content-evenly">
+    <div>
+        <label for="date" class="form-label">Date of Tranjection</label>
+        <input class="form-control" type="date" formControlName="date">
+    </div>
+    <div>
+        <label for="movementType" class="form-label">Movement Type</label>
+        <input class="form-control" type="text" formControlName="movementType">
+    </div>
+    <div>
+        <label for="amount" class="form-label">Amount</label>
+        <input class="form-control" type="number" formControlName="amount">
+    </div>
+    <div>
+        <button type="submit" class="btn btn-success mt-3">Add</button>
+    </div>
+    </form>
+    <button type="button" class="btn btn-primary mt-3" (click)="saveData()">Save Data</button>
+    </div>
+
+
+</div>
+
+
+<button (click)="onClick()">click</button>
+<!-- <button (click)="onDelete()">Delete data</button> -->

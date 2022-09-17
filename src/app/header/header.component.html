@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #2e87c9">
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #2e87c9">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">
         <img src="https://tse4.mm.bing.net/th?id=OIP.DenvbWQrSGrM5_ILl74U7AAAAA&pid=Api&P=0" alt="" width="30" height="24" class="d-inline-block align-text-top">
@@ -14,17 +14,17 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" href="#">Dash Board</a>
+            <a class="nav-link active" routerLink="/acc-dash-board">Dash Board</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Money Transfer</a>
+            <a class="nav-link" routerLink="/acc-dash-board">Money Transfer</a>
           </li>
           <!-- <li class="nav-item">
             <a class="nav-link" href="#">Account Details</a>
           </li> -->
         </ul>
-        <div class="d-flex flex-column align-items-center">
-          <div>Hi {{activeAcc.name}}</div>
+        <div class="d-flex flex-column align-items-center header-user-name">
+          <div >Hi {{activeAcc.name | titlecase}}</div>
           <div (click)="logOut()">Log Out</div>
         </div>
       </div>

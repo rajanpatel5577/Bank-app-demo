@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import {HttpClientModule} from '@angular/common/http'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,6 +17,7 @@ import { LoanComponent } from './acc-dash-board/loan/loan.component';
 import {AccDashBoardComponent} from './acc-dash-board/acc-dash-board.component'
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthGaurdService } from './shared/auth-gaurd.service';
+import { NewAccAddComponent } from './new-acc-add/new-acc-add.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,12 +29,15 @@ import { AuthGaurdService } from './shared/auth-gaurd.service';
     AccSummaryComponent,
     FundTransferComponent,
     LoanComponent,
-    AccDashBoardComponent
+    AccDashBoardComponent,
+    NewAccAddComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
+    
   ],
   providers: [AccService,LoginService,AuthGaurdService],
   bootstrap: [AppComponent]

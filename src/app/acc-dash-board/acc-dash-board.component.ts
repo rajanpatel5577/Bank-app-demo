@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AccService } from '../shared/acc.service';
+import { LoginService } from '../shared/login.service';
 
 @Component({
   selector: 'app-acc-dash-board',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AccDashBoardComponent implements OnInit {
 
-  constructor() { }
+  constructor(private logingService:LoginService,private accService:AccService) { }
+fathing=true;
 
   ngOnInit(): void {
+    this.accService.eportFatching.subscribe((data) => { this.fathing = data});
   }
+
+  // onClick(){
+   
+  // }
 
 }

@@ -1,7 +1,7 @@
-<div class="card text-white bg-primary mb-3 acc-summary-wrapper">
+<div class="card text-white mb-3 acc-summary-wrapper" style="background:#2e87c9">
     <div class="card-header">Account Details</div>
     <div class="card-body" >
-      <p class="card-text">Account Holder Name: {{activeAcc.name}}</p>
+      <p class="card-text">Account Holder Name: {{activeAcc.name | titlecase}}</p>
       <p class="card-text">Acount Number: {{activeAcc.accNum}}</p>
       <p class="card-text">Account Type : {{activeAcc.accType}}</p>
     </div>

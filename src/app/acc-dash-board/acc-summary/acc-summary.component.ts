@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+
 import { AccModel } from 'src/app/shared/acc-model';
 import { AccService } from 'src/app/shared/acc.service';
 
@@ -14,9 +15,8 @@ export class AccSummaryComponent implements OnInit {
   constructor(private accService:AccService) { }
 
   ngOnInit(){
-    this.activeAcc = this.accService.activeAcc;
-  // this.loginService.eportActiveAcc.subscribe((actACC:AccModel)=>{this.activeAcc = actACC})
-
+ this.accService.exportActiveAcc.subscribe((data) =>{
+  this.activeAcc = data})
   }
 
 }

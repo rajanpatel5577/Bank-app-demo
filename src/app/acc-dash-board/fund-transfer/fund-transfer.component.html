@@ -1,4 +1,4 @@
-<div class="card text-white bg-warning mb-3">
+<div class="card text-white mb-3" style="background:#2e87c9">
     <div class="card-header">Fund Transfer</div>
     <div class="card-body">
     <form [formGroup]="fundTransferForm" (ngSubmit)="onSubmit()">
@@ -11,7 +11,7 @@
         <label for="amount" class="form-label">Amount</label>
         <input class="form-control" type="number" formControlName="amount">
 
-        <button type="submit" class="btn btn-primary mt-3">Transfer Now</button>
+        <button type="submit" class="btn btn-danger mt-3">Transfer Now</button>
     </form>
     </div>
 </div>

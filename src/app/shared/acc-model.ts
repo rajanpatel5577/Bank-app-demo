@@ -5,11 +5,14 @@ export class AccModel {
         public password:number, 
         public accNum: number, 
         public accType:string,
-        public statments:statmentModel[]
+        public statments:statmentModel[],
         ){
     }
 }
 
 export class statmentModel {
-    constructor(public date:string, public movementType:string, public amount:number){}
+    constructor(
+        public date:string, 
+        public movementType:string, 
+        public amount:number){}
 }

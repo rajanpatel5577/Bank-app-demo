@@ -4,6 +4,7 @@ import { AccDashBoardComponent } from './acc-dash-board/acc-dash-board.component
 import { StatmentsComponent } from './acc-dash-board/statments/statments.component';
 import { HeaderComponent } from './header/header.component';
 import { LoginPageComponent } from './login-page/login-page.component';
+import { NewAccAddComponent } from './new-acc-add/new-acc-add.component';
 import { AuthGaurdService } from './shared/auth-gaurd.service';
 
 const routes: Routes = [
@@ -28,6 +29,10 @@ const routes: Routes = [
   {
     path:'header',
     component:HeaderComponent
+  },
+  {
+    path:'new-acc-add',
+    component:NewAccAddComponent
   }
 ];
 

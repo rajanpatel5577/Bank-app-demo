@@ -15,8 +15,9 @@ export class HeaderComponent implements OnInit {
   constructor(private loginService:LoginService, private accService:AccService, private route:Router) { }
 
   ngOnInit(){
-    this.activeAcc = this.accService.activeAcc;
-  // this.loginService.eportActiveAcc.subscribe((actACC:AccModel)=>{this.activeAcc = actACC})
+ this.accService.exportActiveAcc.subscribe((data) => {
+  this.activeAcc = data;
+ })
   }
 
   logOut(){
