@@ -3,3 +3,34 @@
         color:#fff;
     }
 }
+
+.mob-navbar{
+    @media only screen and (min-device-width: 320px) and (max-device-width: 990px) {
+    display: none;
+    }
+
+}
+
+.mob-navbar-clicked{
+  background-color: #fff;
+  display: block;
+  position: fixed;
+  left: 29%;
+  top: 7%;
+  height: 150px;
+  width: 250px;
+  line-height: 2200%;
+
+  div{
+      color: #000;
+  }
+
+    ul{
+        display: none;
+    }
+
+    .logout{
+        color: red;
+    }
+
+}

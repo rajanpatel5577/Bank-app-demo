@@ -4,14 +4,14 @@
         <img src="https://tse4.mm.bing.net/th?id=OIP.DenvbWQrSGrM5_ILl74U7AAAAA&pid=Api&P=0" alt="" width="30" height="24" class="d-inline-block align-text-top">
         The Digital Bank
     </a>
-      <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button> -->
-      <button class="navbar-toggler" type="button">
+   
+      <button class="navbar-toggler" type="button" (click)="navBar()">
         <span class="navbar-toggler-icon"></span>
       </button>
       
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <div class="collapse navbar-collapse mob-navbar" [ngClass]="{'mob-navbar-clicked':navClick}">
+        <!-- collapse navbar-collapse  -->
+ 
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
             <a class="nav-link active" routerLink="/acc-dash-board">Dash Board</a>
@@ -25,7 +25,7 @@
         </ul>
         <div class="d-flex flex-column align-items-center header-user-name">
           <div >Hi {{activeAcc.name | titlecase}}</div>
-          <div (click)="logOut()">Log Out</div>
+          <div (click)="logOut()"><span *ngIf="navClick">Click Here to</span><span class="logout">Log Out</span></div>
         </div>
       </div>
     </div> 

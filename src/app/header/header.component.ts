@@ -25,4 +25,9 @@ export class HeaderComponent implements OnInit {
     this.route.navigate(['/login-page'])
   }
 
+  navClick=false;
+  navBar(){
+    this.navClick=!this.navClick;
+  }
+
 }
