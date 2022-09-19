@@ -79,18 +79,7 @@ loginVerify(id:string,pwd:number){
 return status;
 }
 
-addTotalBalance = new Subject<number>();
-addTotalCredit = new Subject<number>();
-addTotalDebit = new Subject<number>();
-addInTotalBalance() {
-this.addTotalBalance.next(this.totalBalance);
-};
-addInTotalCredit() {
-  this.addTotalCredit.next(this.totalCredit);
-};
-addInTotalDebit() {
-  this.addTotalDebit.next(this.totalDebit);
-};
+
 
 getDate(){
   let today = new Date();
@@ -118,16 +107,6 @@ removeAmount(id:string,num:number,amount:number){
        console.log(this.accs)
      }
     })
-}
-
-calTotalBalance(id:string){
-  let tB =0;
-  this.accs.find((acc)=> {
-    if(acc.userId === id){
-      tB = acc.statments.map(m => m.amount).reduce((total,amount) => total+amount);
-    }
-   })
-return tB;
 }
 
 fatchData(){
