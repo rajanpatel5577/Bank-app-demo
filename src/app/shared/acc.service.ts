@@ -4,6 +4,7 @@ import { Subject } from 'rxjs';
 import {map, subscribeOn} from 'rxjs/operators'
 import { AccModel } from './acc-model';
 import { statmentModel} from './acc-model'
+import { CalculationService } from './calculation.service';
 @Injectable({
   providedIn: 'root'
 })
@@ -53,9 +54,11 @@ eA = new EventEmitter<AccModel>();
 totalBalance:number=0;
 totalCredit:number=0;
 totalDebit:number=0;
+accsCopy:AccModel[]=[];
+exportError= new Subject<string>();
 
 
-  constructor(private http:HttpClient ) {}
+  constructor(private http:HttpClient, private calcService:CalculationService ) {}
 
 
 accLoginVerify:{id:string,pwd:number}[]= [
@@ -91,48 +94,75 @@ getDate(){
 }
 
 
+updateTotalBalance = new Subject<number>();
+updateTotalDebit = new Subject<number>();
 
-addAmount(id:string,num:number,amount:number){
-   this.accs.find((acc)=> {
-      if(acc.userId === id){
-        acc.statments.push(new statmentModel(this.getDate(), 'credit', amount));
-      }
-     })
+addAmount(accIndex:number,amount:number,id:string){
+  this.accs[accIndex].statments.push(new statmentModel(this.getDate(), 'credit', amount));
+  console.log(this.accsCopy);
+  this.accsCopy = this.accs.slice();
+  console.log(this.accsCopy);
+
+// Deleting database
+  this.http.delete('https://new-data-18667-default-rtdb.firebaseio.com/posts.json')
+  .subscribe((data) => {console.log(data)})
+  console.log(this.accs)
+// adding new database
+this.accs.forEach((acc) =>{
+  this.http.post('https://new-data-18667-default-rtdb.firebaseio.com/posts.json', acc
+).subscribe((data) => {
+  console.log(data);
+}) 
+});
+alert(`${amount}  transfered successfully to ${id}'s account`);
 }
 
-removeAmount(id:string,num:number,amount:number){
-  this.accs.find((acc)=> {
-     if(acc.userId === id){
-       acc.statments.push(new statmentModel(this.getDate(), 'debite', amount));
-       console.log(this.accs)
-     }
-    })
+removeAmount(accIndex:number,amount:number){
+  this.accs[accIndex].statments.push(new statmentModel(this.getDate(), 'debit', amount));
+  this.updateTotalBalance.next(this.calcService.calcTotalBalance(this.activeAcc));
+  this.updateTotalDebit.next(this.calcService.calTotalDebit(this.activeAcc));
+
+}
+
+findAccIndex(id:string){
+ let num:number=-1;
+  this.accs.find((acc) => {
+    if(acc.userId === id ){
+      num = this.accs.indexOf(acc);
+    }
+  })
+  return num;
 }
 
 fatchData(){
   this.fatchingData=true;
+  // this.http.get<{[key:string]:AccModel}>('https://new-data-18667-default-rtdb.firebaseio.com/posts.json').subscribe((data) => console.log(data))
   this.http.get<{[key:string]:AccModel}>('https://new-data-18667-default-rtdb.firebaseio.com/posts.json'
   ).pipe(
     map((responseData) => {
-      console.log(responseData)
+      console.log(responseData);
       const dataArry:AccModel[] = [];
+      console.log(dataArry);
       for(const key in responseData){
         if(responseData.hasOwnProperty(key)){
           dataArry.push({...responseData[key]})
+      console.log(dataArry);
+
         }
       }
       return dataArry;
     })).subscribe((data) => {
       this.accs=data;
       this.accs.forEach((acc) => {
-        if(acc.userId == this.activeId ){
+        if(acc.userId === this.activeId ){
           this.activeAcc = acc;
           this.fatchingData = false;
           this.eportFatching.next(this.fatchingData);
-          setTimeout(() =>{this.exportActiveAcc.next(this.activeAcc);},2000) 
+          this.exportActiveAcc.next(this.activeAcc);
         }
        })
-    
+    },(error) => {
+      this.exportError.next(error.message)
     })
   }   
 

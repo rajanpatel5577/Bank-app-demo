@@ -1,4 +1,4 @@
-<div *ngIf="fathing" class="d-flex justify-content-center mt-5">
+<div *ngIf="fatching" class="d-flex justify-content-center mt-5">
   
     <div class="lds-spinner">
         <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div>    
@@ -6,7 +6,12 @@
 
 </div>
 
-<div *ngIf="!fathing">
+<div *ngIf="errorStatus">
+    <p class="alert alert-success">Something went wrong the following error occurred</p>
+    <div class="alert alert-danger">{{error}}</div>
+</div>
+
+<div [ngClass]="{display:fatching || errorStatus}" >
 <app-header></app-header>    
 <app-intro></app-intro>
 <div class="row">

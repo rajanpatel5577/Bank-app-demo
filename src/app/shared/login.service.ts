@@ -33,7 +33,6 @@ login(id:string,pwd:number){
   if(!this.accService.loginVerify(id,pwd)) alert('Invalid user id/pwd')
   if(this.accService.loginVerify(id,pwd)){
     this.loggedIn=true;
-    console.log(this.accService.accs)
     this.accService.fatchData();
     this.route.navigate(['/acc-dash-board'])
   }

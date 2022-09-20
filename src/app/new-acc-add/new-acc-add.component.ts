@@ -70,20 +70,46 @@ export class NewAccAddComponent implements OnInit {
   this.addNewAcc.reset()
   }
 
-  accs1:AccModel = new AccModel('chiku','cp', 3333, 14,'saving', [
+  accs1:AccModel[] = [
+      new AccModel('raju', 'rp', 1111, 12, 'saving', [
         new statmentModel('13/06/2022', 'credit', 1000),
         new statmentModel('13/06/2022', 'credit', 5000),
-        new statmentModel('13/06/2022', 'debit', -1000),
-        new statmentModel('13/06/2022', 'debit', -1700),
+        new statmentModel('13/06/2022', 'debit', 1000),
+        new statmentModel('13/06/2022', 'debit', 1700)
+      ]),
+      new AccModel('teju', 'tp', 2222, 13,'saving',[
+        new statmentModel('13/06/2022', 'credit', 1000),
+        new statmentModel('13/06/2022', 'credit', 5000),
+        new statmentModel('13/06/2022', 'debit', 1000),
+        new statmentModel('13/06/2022', 'debit', 1700),
+        new statmentModel('13/06/2022', 'debit', 1000),
+    
+      ]),
+      new AccModel('chiku','cp', 3333, 14,'saving', [
+        new statmentModel('13/06/2022', 'credit', 1000),
+        new statmentModel('13/06/2022', 'credit', 5000),
+        new statmentModel('13/06/2022', 'debit', 1000),
+        new statmentModel('13/06/2022', 'debit', 1700),
         new statmentModel('13/06/2022', 'credit', 1000),
     
+      ]),
+      new AccModel('vaishu','vs', 4444, 15,'saving', [
+        new statmentModel('13/06/2022', 'credit', 1000),
+        new statmentModel('13/06/2022', 'credit', 5000),
+        new statmentModel('13/06/2022', 'credit', 1000),
+        new statmentModel('13/06/2022', 'debit', 1000),
+        new statmentModel('13/06/2022', 'debit', 1700)
       ])
+    ]
 
-      onClick(){
-    console.log(this.accs1)
-    // this.http.post('https://new-data-18667-default-rtdb.firebaseio.com/posts.json/NC9BCDo9aldrK_onQEq', this.accs1
-    // ).subscribe((data) => {console.log(data)}) 
+onAdd(){
+    console.log("acc1" ,this.accs1)
+    this.accs1.forEach((acc) =>{
+          this.http.post('https://new-data-18667-default-rtdb.firebaseio.com/posts.json', acc
+    ).subscribe((data) => {console.log(data)}) 
+    })
   }
+
 onDelete(){
   console.log('run')
   this.http.delete('https://new-data-18667-default-rtdb.firebaseio.com/posts.json').subscribe((data) => {console.log(data);alert('Data deleted from database')}) 

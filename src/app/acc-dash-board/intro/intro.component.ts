@@ -21,6 +21,9 @@ totalBalance:number=0;
       this.totalBalance = this.calcService.calcTotalBalance(this.activeAcc);
     })
 
+    this.accService.updateTotalBalance.subscribe((data) =>{this.totalBalance=data})
+
+
   }
 
 }
